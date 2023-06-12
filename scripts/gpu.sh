@@ -1,4 +1,3 @@
-
 # https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/install-nvidia-driver.html
 # --> GRID drivers (G5, G4dn, and G3 instances) --> Amazon Linux and Amazon Linux 2
 sudo yum update -y
@@ -13,9 +12,7 @@ sudo yum install -y gcc kernel-devel-$(uname -r)
 # sudo yum-config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/$distribution/${ARCH}/cuda-$distribution.repo
 # sudo yum install -y nvidia-driver-latest-dkms
 
-rm -rf /usr/lib64/libnvidia-ml.so
-rm -rf /usr/lib64/libnvidia-ml.so.1
-rm -rf /usr/bin/nvidia-smi/
+sudo rm -rf /usr/lib64/libnvidia-ml.so /usr/lib64/libnvidia-ml.so.1 /usr/bin/nvidia-smi/
 
 
 aws s3 cp --recursive s3://ec2-linux-nvidia-drivers/latest/ .
@@ -70,7 +67,7 @@ distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
 
 sudo yum install nvidia-container-toolkit -y
 
-cat <<EOF >> "/etc/containerd/config.toml"
+cat <<EOF | sudo tee -a "/etc/containerd/config.toml"
 
 [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.nvidia]
 privileged_without_host_devices = false
