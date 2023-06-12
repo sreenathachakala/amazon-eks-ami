@@ -21,7 +21,7 @@
     "creator": null,
     "docker_version": null,
     "encrypted": null,
-    "instance_type": null,
+    "instance_type": "g4dn.xlarge",
     "kernel_version": null,
     "kms_key_id": null,
     "kubernetes_build_date": null,
@@ -175,6 +175,16 @@
         "SONOBUOY_E2E_REGISTRY={{user `sonobuoy_e2e_registry`}}",
         "PAUSE_CONTAINER_VERSION={{user `pause_container_version`}}",
         "CACHE_CONTAINER_IMAGES={{user `cache_container_images`}}"
+      ]
+    },
+    {
+      "type": "shell",
+      "script": "scripts/gpu.sh",
+      "execute_command": "{{ .Vars }} sudo -E bash '{{ .Path }}'",
+      "environment_vars": [
+        "AWS_ACCESS_KEY_ID={{user `aws_access_key_id`}}",
+        "AWS_SECRET_ACCESS_KEY={{user `aws_secret_access_key`}}",
+        "AWS_SESSION_TOKEN={{user `aws_session_token`}}"
       ]
     },
     {
