@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/install-nvidia-driver.html
 # --> GRID drivers (G5, G4dn, and G3 instances) --> Amazon Linux and Amazon Linux 2
 sudo yum update -y
@@ -5,7 +7,9 @@ sudo yum install -y gcc kernel-devel-$(uname -r)
 
 #https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html#centos7
 
-# sudo yum install -y tar bzip2 make automake gcc gcc-c++ pciutils elfutils-libelf-devel libglvnd-devel iptables firewalld vim bind-utils wget
+sudo yum install -y tar bzip2
+
+# make automake gcc gcc-c++ pciutils elfutils-libelf-devel libglvnd-devel iptables firewalld vim bind-utils wget
 # sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 # distribution=rhel7
 # ARCH=$( /bin/arch )
@@ -17,7 +21,8 @@ sudo rm -rf /usr/lib64/libnvidia-ml.so /usr/lib64/libnvidia-ml.so.1 /usr/bin/nvi
 
 aws s3 cp --recursive s3://ec2-linux-nvidia-drivers/latest/ .
 chmod +x NVIDIA-Linux-x86_64*.run
-sudo CC=/usr/bin/gcc10-cc ./NVIDIA-Linux-x86_64*.run --silent
+sudo CC=/usr/bin/gcc10-cc ./NVIDIA-Linux-x86_64-525.105.17-grid-aws.run --install-libglvnd --no-questions --disable-nouveau  --no-backup  --ui=none 
+
 
 sudo touch /etc/modprobe.d/nvidia.conf
 echo "options nvidia NVreg_EnableGpuFirmware=0" | sudo tee --append /etc/modprobe.d/nvidia.conf
@@ -80,5 +85,7 @@ BinaryName = "/usr/bin/nvidia-container-runtime"
 EOF
 
 sudo sed -i 's/default_runtime_name = "runc"/default_runtime_name = "nvidia"/' "/etc/containerd/config.toml"
+
+
 
 # sudo systemctl restart containerd
