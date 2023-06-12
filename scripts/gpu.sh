@@ -13,6 +13,10 @@ sudo yum install -y gcc kernel-devel-$(uname -r)
 # sudo yum-config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/$distribution/${ARCH}/cuda-$distribution.repo
 # sudo yum install -y nvidia-driver-latest-dkms
 
+rm -rf /usr/lib64/libnvidia-ml.so
+rm -rf /usr/lib64/libnvidia-ml.so.1
+rm -rf /usr/bin/nvidia-smi/
+
 
 aws s3 cp --recursive s3://ec2-linux-nvidia-drivers/latest/ .
 chmod +x NVIDIA-Linux-x86_64*.run
