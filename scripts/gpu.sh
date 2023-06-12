@@ -1,3 +1,6 @@
+
+# https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/install-nvidia-driver.html
+# --> GRID drivers (G5, G4dn, and G3 instances) --> Amazon Linux and Amazon Linux 2
 sudo yum update -y
 sudo yum install -y gcc kernel-devel-$(uname -r)
 
@@ -26,7 +29,7 @@ sudo CC=/usr/bin/gcc10-cc ./NVIDIA-Linux-x86_64*.run --silent
 # EOF
 
 
-
+#https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#id6
 sudo mkdir -p /etc/containerd \
     && sudo containerd config default | sudo tee /etc/containerd/config.toml
 
