@@ -18,8 +18,8 @@ aws s3 cp --recursive s3://ec2-linux-nvidia-drivers/latest/ .
 chmod +x NVIDIA-Linux-x86_64*.run
 sudo CC=/usr/bin/gcc10-cc ./NVIDIA-Linux-x86_64*.run --silent
 
-# sudo touch /etc/modprobe.d/nvidia.conf
-# echo "options nvidia NVreg_EnableGpuFirmware=0" | sudo tee --append /etc/modprobe.d/nvidia.conf
+sudo touch /etc/modprobe.d/nvidia.conf
+echo "options nvidia NVreg_EnableGpuFirmware=0" | sudo tee --append /etc/modprobe.d/nvidia.conf
 
 
 # cat <<EOF | sudo tee /etc/sysctl.d/99-kubernetes-cri.conf
