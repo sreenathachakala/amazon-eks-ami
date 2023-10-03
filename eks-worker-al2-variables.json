@@ -19,19 +19,19 @@
     "encrypted": "false",
     "kernel_version": "",
     "kms_key_id": "",
-    "launch_block_device_mappings_volume_size": "4",
+    "launch_block_device_mappings_volume_size": "40",
     "pause_container_version": "3.5",
     "pull_cni_from_github": "true",
     "remote_folder": "",
     "runc_version": "1.1.5-1.amzn2",
     "security_group_id": "",
     "sonobuoy_e2e_registry": "",
-    "source_ami_filter_name": "amzn2-ami-minimal-hvm-*",
+    "source_ami_filter_name": "amazon-eks-node-1.25*",
     "source_ami_id": "",
-    "source_ami_owners": "137112412989",
+    "source_ami_owners": "602401143452",
     "ssh_interface": "",
     "ssh_username": "ec2-user",
     "subnet_id": "",
     "temporary_security_group_source_cidrs": "",
-    "volume_type": "gp2"
+    "volume_type": "gp3"
 }
