@@ -20,9 +20,9 @@ sudo rm -rf /usr/lib64/libnvidia-ml.so /usr/lib64/libnvidia-ml.so.1 /usr/bin/nvi
 
 
 # aws s3 cp --recursive s3://ec2-linux-nvidia-drivers/latest/ .
-wget https://us.download.nvidia.com/tesla/535.104.12/NVIDIA-Linux-x86_64-535.104.12.run
-chmod +x NVIDIA-Linux-x86_64-535.104.12.run
-sudo CC=/usr/bin/gcc10-cc ./NVIDIA-Linux-x86_64-535.104.12.run --install-libglvnd --no-questions --disable-nouveau  --no-backup  --ui=none 
+wget https://us.download.nvidia.com/XFree86/Linux-x86_64/535.154.05/NVIDIA-Linux-x86_64-535.154.05.run
+chmod +x NVIDIA-Linux-x86_64-535.154.05.run
+sudo CC=/usr/bin/gcc10-cc ./NVIDIA-Linux-x86_64-535.154.05.run --install-libglvnd --no-questions --disable-nouveau  --no-backup  --ui=none 
 
 
 sudo touch /etc/modprobe.d/nvidia.conf
